@@ -12,15 +12,13 @@
 
 <body>
     <h1>BLOG</h1>
-    <a href=""></a>
-    <div class="container">
+    <div class="wrapper">
         <button id="create-new-btn" type="button" class="btn btn-primary" onclick="location.href='/blog/create'">Create new post</button>
-        <div class="card-deck">
+        <div class="grid-row">
             {{#each articles}}
-            <div class="card" onclick="location.href='/blog/{{url}}'">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.title}}</h5>
+            <div class="grid-col" onclick="location.href='/blog/{{url}}'">
+                <div class="post">
+                    <h5 class="post-title">{{this.title}}</h5>
                 </div>
             </div>
             {{/each}}

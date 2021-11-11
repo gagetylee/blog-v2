@@ -1,14 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.grid-col {
+    width: 100%;
+    float: left;
+    padding: 2rem;
+}
+
 body {
-    background-color: #ffffffaf;
+    background-color: #f0f0f0af;
 }
-.card {
-    box-shadow: 0px 5px 10px #888888;
-    border-radius: 10px;
-    background-color: #ffffff;
-}
-.card:hover {
-    box-shadow: 0px 10px 20px #888888;
-    cursor: pointer;
+
+.wrapper {
+    max-width: 100%;
+    margin: auto;
 }
 
 .container {
@@ -20,3 +26,41 @@ body {
     margin-bottom: 20px;
 }
 
+.post {
+    background-color: white;
+    box-shadow: 0px 5px 10px #888888;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.post:hover {
+    box-shadow: 0px 10px 20px #888888;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+    .wrapper {
+        max-width: 90%;
+    }
+
+    .grid-col {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .wrapper {
+        max-width: 90%;
+    }
+
+    .grid-col {
+        width: 33.3%;
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .wrapper {
+        max-width: 1000px;
+    }
+}
