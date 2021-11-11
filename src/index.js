@@ -14,6 +14,7 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(blogRouter)
 app.use(express.static(publicDirectoryPath))
 
