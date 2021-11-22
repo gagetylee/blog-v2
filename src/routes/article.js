@@ -3,20 +3,32 @@ const { registerDecorator } = require('handlebars');
 const Article = require('./../models/article')
 const router = new express.Router()
 
-router.get('/blog', async (req, res) => {
+router.get('/', async (req, res) => {
    try {
       const articles = await Article.find({})
-      res.render('blog', { articles })
+
+      res.render('index', {articles})
    } catch (e) {
       res.status(500).send()
    }
 })
 
-router.get('/blog/create', async (req, res) => {
+
+router.get('/articles', async (req, res) => {
+   try {
+      const articles = await Article.find({})
+
+      res.send(articles)
+   } catch (e) {
+      res.status(500).send()
+   }
+})
+
+router.get('/create', async (req, res) => {
    res.render('create')
 })
 
-router.get('/blog/:title', async (req, res) => {
+router.get('/:title', async (req, res) => {
    try {
       const articleName = req.params.title.replace(/-/g, ' ')
       const article = await Article.findOne({ title: { $regex: new RegExp('^' + articleName + '$', "i") } })
@@ -27,7 +39,7 @@ router.get('/blog/:title', async (req, res) => {
    }
 })
 
-router.post('/blog', async (req, res) => {
+router.post('/', async (req, res) => {
    
    if (!req.body.title) {
       return res.send({
@@ -50,11 +62,24 @@ router.post('/blog', async (req, res) => {
 
    try {
       await article.save()
-      res.redirect(`/blog/${article.url}`)
+      res.redirect(`/${article.url}`)
       // res.status(201).send(article)
    } catch (e) {
       console.log(e);
       res.status(400).send(e)
+   }
+})
+
+router.delete('/:id', async (req, res) => {
+   try {
+      const article = await Article.findByIdAndDelete(req.params.id)
+
+      if (!article) {
+         return res.status(404).send()
+      }
+      res.send(article)
+   } catch (e) {
+      res.send(500).send()
    }
 })
 
