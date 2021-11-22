@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
    }
 })
 
-
 router.get('/articles', async (req, res) => {
    try {
       const articles = await Article.find({})
@@ -28,12 +27,12 @@ router.get('/create', async (req, res) => {
    res.render('create')
 })
 
-router.get('/:title', async (req, res) => {
+router.get('/:slug', async (req, res) => {
    try {
-      const articleName = req.params.title.replace(/-/g, ' ')
-      const article = await Article.findOne({ title: { $regex: new RegExp('^' + articleName + '$', "i") } })
+      const article = await Article.findOne({ slug: req.params.slug })
+      if (article == null) res.redirect('/')
 
-      article ? (res.render('article', article)) : res.status(404).send()
+      res.render('article', article)
    } catch (e) {
       res.status(500).send()
    }
@@ -51,18 +50,15 @@ router.post('/', async (req, res) => {
          error: 'You must provide a body'
       })
    }
-   let articleURL = req.body.title
-   articleURL = articleURL.replace(/\s+/g, '-').toLowerCase();
-   // const article = new Article(req.query.title, req.query.content, articleURL)
+
    const article = new Article({
       title: req.body.title,
-      content: req.body.content,
-      url: articleURL
+      content: req.body.content
    })
 
    try {
       await article.save()
-      res.redirect(`/${article.url}`)
+      res.redirect(`/${article.slug}`)
       // res.status(201).send(article)
    } catch (e) {
       console.log(e);
@@ -82,5 +78,7 @@ router.delete('/:id', async (req, res) => {
       res.send(500).send()
    }
 })
+
+
 
 module.exports = router

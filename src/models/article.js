@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
-const Article = mongoose.model('Article', {
+
+const articleSchema = new mongoose.Schema({
    "title": {
       "type": String,
       "required": true,
@@ -16,10 +18,20 @@ const Article = mongoose.model('Article', {
       "type": Date,
       "default": Date.now()
    },
-   "url": {
+   "slug": {
       "type": String,
       "required": true,
       "unique": true
    }
 })
-module.exports = Article
+
+articleSchema.pre('validate', function(next) {
+   if (this.title) {
+      this.slug = slugify(this.title, { lower: true, strict: true })
+      console.log(this.slug);
+   }
+
+   next()
+})
+
+module.exports = mongoose.model('Article', articleSchema)

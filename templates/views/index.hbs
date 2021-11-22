@@ -16,7 +16,7 @@
         <button id="create-new-btn" type="button" class="btn btn-primary" onclick="location.href='/create'">Create new post</button>
         <div class="grid-row">
             {{#each articles}}
-            <div class="grid-col" onclick="location.href='/{{url}}'">
+            <div class="grid-col" onclick="location.href='/{{slug}}'">
                 <div class="post">
                     <img src="/images/mount-purple.jpg" alt="">
                     <div class="content">
