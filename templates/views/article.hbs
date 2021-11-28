@@ -12,11 +12,12 @@
 </head>
 
 <body>
+    {{>nav}}
     <div class="container w-75">
         <img src="/images/mountains.jpg" alt="...">
         <article>
             <div id="buttons">
-                <button class="btn btn-secondary">Edit</button>
+                <button class="btn btn-secondary"><a href="/edit/{{_id}}">Edit</a></button>
                 <button onclick="deletePressed('{{_id}}')" id="delete" name="delete" class="btn btn-danger">Delete</button>
             </div>
             <h1>{{title}}</h1>

@@ -14,6 +14,16 @@ article {
     padding: 1rem;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: black;
+  }
+
 #buttons {
     float: right;
 }

@@ -1,11 +1,12 @@
 const express = require('express');
+const { redirect } = require('express/lib/response');
 const { registerDecorator } = require('handlebars');
 const Article = require('./../models/article')
 const router = new express.Router()
 
 router.get('/', async (req, res) => {
    try {
-      const articles = await Article.find({})
+      const articles = await Article.find().sort({ date: -1 })
 
       res.render('index', {articles})
    } catch (e) {
@@ -25,6 +26,18 @@ router.get('/articles', async (req, res) => {
 
 router.get('/create', async (req, res) => {
    res.render('create')
+})
+
+router.get('/edit/:id', async (req, res) => {
+   try {
+      const article = await Article.findById(req.params.id);
+      if (!article) {
+         return res.status(404).send()
+      }
+      res.render('edit', article)
+   } catch (e) {
+      res.status(500).send()
+   }
 })
 
 router.get('/:slug', async (req, res) => {
@@ -63,6 +76,20 @@ router.post('/', async (req, res) => {
    } catch (e) {
       console.log(e);
       res.status(400).send(e)
+   }
+})
+
+router.patch('/:id', async (req, res) => {
+   try {
+      const article = await Article.findByIdAndUpdate(req.params.id, req.body, { new: true})
+      
+      if (!article) {
+         return res.status(404).send()
+      }
+ 
+      article.save()
+   } catch (e) {
+      res.status(500).send()
    }
 })
 

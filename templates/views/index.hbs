@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <h1>BLOG</h1>
     <div class="wrapper">
+        {{>nav}}
         <button id="create-new-btn" type="button" class="btn btn-primary" onclick="location.href='/create'">Create new post</button>
         <div class="grid-row">
             {{#each articles}}
