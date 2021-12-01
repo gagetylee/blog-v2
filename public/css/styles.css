@@ -2,29 +2,32 @@
     box-sizing: border-box;
 }
 
-.grid-col {
-    width: 100%;
-    float: left;
-    padding: 1rem;
-}
-
 body {
     background-color: #f0f0f0;
 }
 
 nav {
     margin: auto;
-    padding: 1rem;
+    padding-top: 1rem;
     background-color: #f0f0f0;
     opacity: 1;
-    min-width: 800px;
     height: 70px;
     position: sticky; top: 0;
+}
+
+main {
+    padding-top: 2rem;
 }
 
 h1 {
     margin-left: 20px;
 }
+
+h2 {
+    margin-left: 20px;
+}
+
+
 
 .wrapper {
     max-width: 100%;
@@ -34,6 +37,13 @@ h1 {
 .container {
     padding-top: 2rem;
 }
+
+.grid-col { 
+    width: 100%; 
+    float: left; 
+    padding: 1rem;
+}
+
 
 #create-new-btn {
     margin-top: 30px;
@@ -47,7 +57,6 @@ h1 {
     border-radius: 8px;
     transition: .2s all ease-in-out;
     width: 100%;
-
 }
 
 .post .content {
@@ -77,30 +86,45 @@ p {
     width: 200px;
     height: 200px;
     margin: 0 auto;
-  }
+}
   
-  .zoom:hover {
+.zoom:hover {
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  }
+}
 
-  .wrapper {
-    width: 500px;
+.wrapper {
+    width: 100%;
     margin: auto;
     padding-left: 10px;
     padding-right: 10px;
-  }
+}
 
-  a {
+a {
     text-decoration: none;
     color: black;
-  }
+}
 
-  a:hover {
+a:hover {
     text-decoration: none;
     color: black;
-  }
+}
 
-  
+
+
+
+.article-img {
+    height: 400px;
+    margin: auto;
+}
+
+#buttons {
+    float: right;
+}
+
+/* Forms */
+form {
+    margin-left: 20px;
+}
 
 @media only screen and (min-width: 600px) {
     .wrapper {
@@ -118,6 +142,10 @@ p {
         width: 800px;
     }
 
+    h5 {
+        font-size: 1.2em;
+    }
+
     .grid-col {
         width: 33.3%;
     }
@@ -126,6 +154,10 @@ p {
 @media only screen and (min-width: 1100px) {
     .wrapper {
         width: 1000px;
+    }
+
+    h5 {
+        font-size: 1.4em
     }
 
     .grid-col {

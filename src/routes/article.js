@@ -81,13 +81,16 @@ router.post('/', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
    try {
-      const article = await Article.findByIdAndUpdate(req.params.id, req.body, { new: true})
-      
+      const article = await Article.findByIdAndUpdate(req.params.id, {
+         title: req.body.title,
+         content: req.body.content,
+      }, { new: true, runValidators: true })
+
       if (!article) {
          return res.status(404).send()
       }
- 
-      article.save()
+      await article.save();
+      res.send(article)
    } catch (e) {
       res.status(500).send()
    }
@@ -105,7 +108,5 @@ router.delete('/:id', async (req, res) => {
       res.send(500).send()
    }
 })
-
-
 
 module.exports = router

@@ -7,23 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/article.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Document</title>
 </head>
 
 <body>
-    {{>nav}}
-    <div class="container w-75">
-        <img src="/images/mountains.jpg" alt="...">
+    <div class="wrapper">
+        {{>nav}}
         <article>
+            <img class="article-img" src="/images/mountains.jpg" alt="...">
+        
             <div id="buttons">
-                <button class="btn btn-secondary"><a href="/edit/{{_id}}">Edit</a></button>
+                <button onclick="window.location.href='/edit/{{_id}}'" class="btn btn-secondary">Edit</button>
                 <button onclick="deletePressed('{{_id}}')" id="delete" name="delete" class="btn btn-danger">Delete</button>
             </div>
-            <h1>{{title}}</h1>
+            <h3>{{title}}</h3>
             <p>{{content}}</p>
         </article>
     </div>
+    
+ 
     
 
 
