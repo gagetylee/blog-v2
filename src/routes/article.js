@@ -1,6 +1,4 @@
 const express = require('express');
-const { redirect } = require('express/lib/response');
-const { registerDecorator } = require('handlebars');
 const Article = require('./../models/article')
 const router = new express.Router()
 
